@@ -37,11 +37,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run:
-          name: "Create Environment file"
-          command: mv .env.test .env
+#      - run:
+#          name: "Create Environment file"
+#          command: mv .env.test .env
 
-      - run: composer install
+      - run: composer install -n --prefer-dist
 
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
@@ -58,7 +58,7 @@ jobs:
             - node_modules
 
       # prepare the database
-#      - run: touch var/data/testing.sqlite
+      - run: mkdir var/data
 #      - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit or codecept
