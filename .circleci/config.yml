@@ -37,6 +37,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - run:
+          name: "Create Environment file"
+          command: mv .env.test .env
+
       - run: composer install
 
       - save_cache:
